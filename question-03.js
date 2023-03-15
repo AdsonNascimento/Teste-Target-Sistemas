@@ -1,21 +1,69 @@
-//letra a
-function gauss1(n) {
-    const a1 = 1, r = 2;
-    let pa = a1 + (n-1)*r;
-  return pa;
-  }
+const vendas = require('./vendas.json');
+
+//O menor valor de faturamento ocorrido em um dia do mês;
+function menorVenda() {
+	let menorValor = vendas[0].valor;
   
-  console.log(gauss1(5));
+	for (let i = 1; i < vendas.length; i++) {
+	  let valor = vendas[i].valor;
   
-  //letra b
-  function gauss2(n) {
-    const a1 = 2, r = 2;
-    let tg = (a1*(r**(n-1)));
-  return tg;
-  }
+	  if (valor > 0 && valor < menorValor) {
+		menorValor = valor;
+	  }
+	}
   
-  console.log(gauss2(7));
+	return menorValor;
+}
   
-  //letra c
+//O menor valor de faturamento ocorrido em um dia do mês;
+function maiorVenda() {  
+let maiorValor = vendas[0].valor;
+
+for (let i = 1; i < vendas.length; i++) {
+	let valor = vendas[i].valor;
+
+	if (valor > maiorValor) {
+		maiorValor = valor;
+	}
+}
+
+return maiorValor;
+}
+
+//Número de dias no mês em que o valor de faturamento diário foi superior à média mensal;
+function media() {
+
+	let mediaParcial = vendas[0].valor;
+	let numVendasAcimaZero = 1;
+	
+	for (let i = 1; i < vendas.length; i++) {
+	  let valor = vendas[i].valor;
+	  
+	  if (valor > 0) {
+		mediaParcial = (mediaParcial + valor) / (numVendasAcimaZero + 1);
+		numVendasAcimaZero++;
+	  }
+	}
+	
+	return mediaParcial;
+}
   
-  //letra d
+function diasVendasAcimaMedia() {
+
+	const valorMedio = media();
+	let dias = 1;
+
+	for (let i = 0; i < vendas.length; i++) {
+		if (vendas[i].valor > valorMedio && vendas[i].valor > 0) {
+		dias++;
+		}
+	}
+
+	return dias;
+}
+
+console.log(`
+	menor valor de venda: ${menorVenda()}\n
+	maior  valor de venda: ${maiorVenda()}\n
+	dias com o faturamento acima da médoa mensal: ${diasVendasAcimaMedia()}
+`);

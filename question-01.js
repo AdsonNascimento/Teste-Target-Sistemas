@@ -9,6 +9,4 @@ function teste() {
     return soma;
   }
   
-  console.log(teste());
-
-  
+  console.log(teste());  
