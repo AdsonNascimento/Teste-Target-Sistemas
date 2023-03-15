@@ -14,5 +14,6 @@ function fibonacci(x) {
     
     return `número ${x} não pertence a sequência`;
 }
-  
-console.log(fibonacci(12));  
+
+
+console.log(fibonacci(13));  
